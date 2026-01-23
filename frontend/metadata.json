@@ -1,0 +1,7 @@
+{
+  "name": "AI Pravni Asistent",
+  "description": "Moderna platforma za pravnu pomoć podržana veštačkom inteligencijom, sa organizacijom dokumenata i administrativnim panelom.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
