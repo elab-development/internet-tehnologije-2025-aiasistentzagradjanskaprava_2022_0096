@@ -14,11 +14,12 @@ local_settings.py
 media/
 staticfiles/
 
-# Environment variables (OVO JE KLJUČNO ZA SIGURNOST)
+# Environment variables 
 .env
 
-# Vector Database (ChromaDB lokalni podaci)
+# Vector Database 
 chroma_db/
+laws/
 
 # IDEs
 .vscode/
