@@ -1,12 +1,18 @@
-To run frontend:
-1. cd frontend
-2. npm install
-3. npm run dev
+# Civil Rights Chatbot
 
-To run backend:
-1. Create .env file in backend/backend/
-2. python3 -m venv venv 
-3. source venv/bin/activate
-4. pip install -r requirements.txt
-5. python manage.py migrate
-6. python manage.py runserver
+Ova aplikacija predstavlja inteligentni chatbot sistem dizajniran da pruži korisnicima informacije o njihovim građanskim pravima koristeći Google Gemini AI.
+
+## Tehnologije
+- **Frontend:** React (Vite)
+- **Backend:** Django REST Framework
+- **Baza podataka:** MYSQL i ChromaDB
+- **AI:** Google Gemini API
+- **Kontejnerizacija:** Docker & Docker Compose
+
+## Pokretanje pomoću Docker-a (Preporučeno)
+Najbrži način za pokretanje celokupnog sistema (Backend, Frontend i Baza):
+
+1. Osigurajte da imate instaliran [Docker Desktop](https://www.docker.com/).
+2. U korenskom direktorijumu pokrenite:
+   ```bash
+   docker-compose up --build
