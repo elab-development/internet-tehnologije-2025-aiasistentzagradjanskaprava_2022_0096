@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'api', 
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -145,7 +146,15 @@ STATIC_URL = 'static/'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Civil Rights Chatbot API',
+    'DESCRIPTION': 'API za chatbot o građanskim pravima (RAG sistem)',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
 
 AUTH_USER_MODEL = 'api.User'
