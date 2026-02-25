@@ -67,6 +67,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:3200",
     "http://20.199.160.84:3200",
+    "http://20.199.160.84:5173",
 ]
 
 ROOT_URLCONF = 'backend.urls'
