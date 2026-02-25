@@ -1,0 +1,60 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  # --- DEO 1: AUTOMATSKI TESTOVI (CI) ---
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: chatbot_db
+          MYSQL_ROOT_PASSWORD: 1234
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+
+      - name: Run Django Tests
+        env:
+          DB_NAME: chatbot_db
+          DB_USER: root
+          DB_PASSWORD: 1234
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+        run: |
+          cd backend
+          python manage.py test
+
+  # --- DEO 2: AUTOMATSKI DEPLOY (CD) ---
+  deploy:
+    needs: test  # Deploy se pokreće SAMO ako testovi prođu!
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VM_IP }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/internet-tehnologije-2025-aiasistentzagradjanskaprava_2022_0096
+            git pull origin main
+            sudo docker-compose up -d --build
+            sudo docker-compose exec -T backend python manage.py migrate
