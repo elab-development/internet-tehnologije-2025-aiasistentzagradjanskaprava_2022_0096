@@ -5,27 +5,22 @@ from api.models import User
 
 class AuthTests(APITestCase):
     def test_registration_and_login(self):
-        # Test registracije
-        reg_url = 'api/register/'
+        reg_url = reverse('auth_register') 
+        
         user_data = {
             "username": "pravnik123",
             "password": "SigurnaLozinka1!",
-            "email": "test@primer.rs",
-            "role": "Citizen"
+            "email": "test@primer.rs"
         }
+        
         response = self.client.post(reg_url, user_data, format='json')
-        #self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        if response.status_code == 404:
-            print(f"Pokušao sam da gađam: {reg_url}")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        # Test logina za dobijanje JWT tokena
-        login_url = 'api/login/'
+        login_url = reverse('token_obtain_pair')
+        
         login_data = {
             "username": "pravnik123",
             "password": "SigurnaLozinka1!"
         }
         login_res = self.client.post(login_url, login_data, format='json')
-        if response.status_code == 404:
-            print(f"Pokušao sam da gađam: {reg_url}")
-        #self.assertEqual(login_res.status_code, status.HTTP_200_OK)
-        #self.assertIn('access', login_res.data) # Provera da li je stigao token
+        self.assertEqual(login_res.status_code, status.HTTP_200_OK)

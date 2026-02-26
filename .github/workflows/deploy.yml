@@ -46,7 +46,7 @@ jobs:
 
   # --- DEO 2: AUTOMATSKI DEPLOY (CD) ---
   deploy:
-    needs: test  # Deploy se pokreće SAMO ako testovi prođu!
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Deploy via SSH

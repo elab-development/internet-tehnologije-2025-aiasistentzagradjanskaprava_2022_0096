@@ -27,7 +27,7 @@ services:
     build: ./frontend
     restart: always
     ports:
-      - "3200:3200"
+      - "80:3200"
     environment:
       - VITE_API_URL=http://20.199.160.84:8000
     depends_on:
