@@ -6,7 +6,7 @@ from api.models import User
 class AuthTests(APITestCase):
     def test_registration_and_login(self):
         # Test registracije
-        reg_url = reverse('api:register') # proveri naziv u urls.py
+        reg_url = 'api/register/'
         user_data = {
             "username": "pravnik123",
             "password": "SigurnaLozinka1!",
@@ -17,7 +17,7 @@ class AuthTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         # Test logina za dobijanje JWT tokena
-        login_url = reverse('api:login')
+        login_url = 'api/login/'
         login_data = {
             "username": "pravnik123",
             "password": "SigurnaLozinka1!"
