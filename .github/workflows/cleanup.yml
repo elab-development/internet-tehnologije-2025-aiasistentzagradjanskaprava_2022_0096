@@ -1,0 +1,22 @@
+name: Cleanup Deployments
+on: workflow_dispatch # Pokrećeš ga ručno na dugme
+
+jobs:
+  delete-deployments:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete all deployments
+        uses: strumwolf/delete-deployment-environment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: |
+            kind-healing / production
+            miraculous-elegance / production
+            overflowing-clarity / production
+            Preview – chatbot-front
+            Preview – internet-tehnologije-2025-aiasistentzagradjanskaprava-2022-0096
+            Production
+            Production - chatbot-front
+            Production – internet-tehnologije-2025-aiasistentzagradjanskaprava-2022-0096
+            supportive-heart / production
+          onlyDeactivated: false
