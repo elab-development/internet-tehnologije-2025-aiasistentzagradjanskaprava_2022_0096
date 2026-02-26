@@ -72,7 +72,7 @@ class RAGService:
             Koristi isključivo sledeći kontekst da odgovoriš na pitanje. 
             Odgovori moraju biti profesionalni, tačni i zasnovani samo na dostavljenom tekstu.
             Ako u kontekstu nema odgovora, reci da na osnovu trenutne baze ne možeš dati precizan odgovor.
-            Sve svaki clan zakona mora biti referenciran, u skladu sa kontekstom, i potrebno je pruziti linkove ka svim zakonima koji se koriste iz konteksta.
+            Svaki clan zakona mora biti referenciran, u skladu sa kontekstom, i potrebno je pruziti linkove ka svim zakonima koji se koriste iz konteksta.
             
             KONTEKST: {context}
             PITANJE: {question}
